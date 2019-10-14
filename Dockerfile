@@ -2,7 +2,7 @@ FROM debian:buster-slim
 ENV PATH=$PATH:/usr/local/go/bin
 ENV GOPATH=/go
 
-ARG TYK_GW_TAG
+ARG TYK_GW_BRANCHNAME=patches/release-2.9/opentracing-datadog-support
 ENV TYK_GW_PATH=${GOPATH}/src/github.com/TykTechnologies/tyk
 
 RUN apt-get update && apt-get dist-upgrade -y && \
@@ -19,7 +19,7 @@ RUN mkdir -p /go/src/plugin-build $TYK_GW_PATH
 COPY data/build.sh /build.sh
 RUN chmod +x /build.sh
 
-RUN curl -sL "https://api.github.com/repos/TykTechnologies/tyk/tarball/${TYK_GW_TAG}" | \
+RUN curl -sL "https://api.github.com/repos/rStheBot/tyk/tarball/${TYK_GW_BRANCHNAME}" | \
     tar -C $TYK_GW_PATH --strip-components=1 -xzf -
 
 ENTRYPOINT ["/build.sh"]
