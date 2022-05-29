@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:10.12-slim
 ENV PATH=$PATH:/usr/local/go/bin
 ENV GOPATH=/go
 
